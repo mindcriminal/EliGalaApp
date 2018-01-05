@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "54486202233",
+    "firebase_url": "https://eli-gala-raffle-tickets.firebaseio.com",
+    "project_id": "eli-gala-raffle-tickets",
+    "storage_bucket": "eli-gala-raffle-tickets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54486202233:android:1e0908005c086959",
+        "android_client_info": {
+          "package_name": "com.mindcriminal.eligalaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54486202233-amt5h4tfnhlj3t30lsk8k452qobu5dfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVOeow05RGCTELV6Bi2fDJJdjh8FprKvs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

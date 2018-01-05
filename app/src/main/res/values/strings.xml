@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Hearts For Eli</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Raffle Ticket Reader</string>
+    <string name="ticket_header">Raffle Ticket Entry</string>
+    <string name="read_ticket">Read Ticket</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="ticket_success">Ticket Read Successfully</string>
+    <string name="ticket_failure">No Ticket Captured</string>
+    <string name="ticket_error">"Error reading ticket: %1$s"</string>
+    <string name="save_data">Save Data</string>
+    <string name="done_scanning">Done</string>
+    <string name="ticket_scanned">Successfully Scanned Ticket!</string>
+    <string name="title_home">Home</string>
+    <string name="title_entry">Entry</string>
+    <string name="title_winners">Winners</string>
+    <string name="name">Name</string>
+    <string name="ticket_number">Ticket Number</string>
+    <string name="ticket_range">Ticket Range</string>
+    <string name="multiple_tickets">**Multiple**</string>
+    <string name="action_settings">Settings</string>
+    <string name="login">Login</string>
+    <string name="email">E-Mail</string>
+    <string name="password">Password</string>
+
+
+
+</resources>

@@ -68,7 +68,7 @@ public class WinnersFragment extends Fragment implements View.OnClickListener{
         useFlash = getView().findViewById(R.id.use_flash);
 
         getView().findViewById(R.id.read_ticket).setOnClickListener(this);
-        getView().findViewById(R.id.save_data).setOnClickListener(this);
+        getView().findViewById(R.id.save_ticket).setOnClickListener(this);
     }
 
     /**
@@ -87,7 +87,7 @@ public class WinnersFragment extends Fragment implements View.OnClickListener{
 
             startActivityForResult(intent, RC_BARCODE_CAPTURE);
         }
-        else if (v.getId() == R.id.save_data) {
+        else if (v.getId() == R.id.save_ticket) {
             String prize = prizeInput.getText().toString();
             DatabaseReference ticketRef = reference.child(ticketList.get(0));
             Map<String, Object> prizeUpdate = new HashMap<>();

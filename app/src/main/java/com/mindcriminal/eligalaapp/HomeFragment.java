@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 public class HomeFragment extends Fragment {
 
     public static HomeFragment newInstance(){
-        HomeFragment homeFragment = new HomeFragment();
-        return homeFragment;
+        return new HomeFragment();
     }
 
     @Nullable

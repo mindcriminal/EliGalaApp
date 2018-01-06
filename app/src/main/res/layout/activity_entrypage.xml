@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
+                android:textColor="@color/white"
                 android:hint="@string/name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:textColor="@color/white"
                 android:hint="@string/ticket_number" />
         </android.support.design.widget.TextInputLayout>
 
@@ -57,11 +59,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:textColor="@color/white"
                 android:hint="@string/ticket_range" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/save_data"
+            android:id="@+id/save_ticket"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"

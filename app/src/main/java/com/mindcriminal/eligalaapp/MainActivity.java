@@ -1,7 +1,5 @@
 package com.mindcriminal.eligalaapp;
 
-//import android.app.Fragment;
-//import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                             case R.id.navigation_home:
                                 selectedFragment = HomeFragment.newInstance();
                                 break;
-                            case R.id.navigation_scan:
+                            case R.id.navigation_entry:
                                 selectedFragment = EntryFragment.newInstance();
                                 break;
                             case R.id.navigation_winners:

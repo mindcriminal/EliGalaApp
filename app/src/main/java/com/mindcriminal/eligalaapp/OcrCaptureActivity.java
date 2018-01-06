@@ -97,7 +97,7 @@ public final class OcrCaptureActivity extends AppCompatActivity implements View.
         mPreview = findViewById(R.id.preview);
         mGraphicOverlay = findViewById(R.id.graphicOverlay);
 
-        ticketList = new ArrayList<String>();
+        ticketList = new ArrayList<>();
 
         // read parameters from the intent used to launch the activity.
         boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);

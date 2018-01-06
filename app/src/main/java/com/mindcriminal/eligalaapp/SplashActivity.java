@@ -23,19 +23,12 @@ import static android.content.ContentValues.TAG;
 public class SplashActivity extends AppCompatActivity
 {
     private ProgressBar spinner;
-    private String email, password;
-    private FirebaseAuth fauth;
-    private String authError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        //fauth = FirebaseAuth.getInstance();
-        //email = "test@test.com";
-        //password = "testtest";
 
         spinner=findViewById(R.id.progress_bar);
         spinner.setVisibility(View.VISIBLE);
@@ -81,43 +74,6 @@ public class SplashActivity extends AppCompatActivity
             spinner.setVisibility(View.GONE);
             startActivity(t1r);
             finish();
-/*
-            fauth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task)
-                {
-                    if (task.isSuccessful())
-                    {
-                        Log.d(TAG, " Verification : signIn With Email:onComplete:" + task.isSuccessful());
-                        //Toast.makeText(SplashActivity.this, "Welcome!", Toast.LENGTH_LONG).show();
-                        Intent t1r = new Intent(SplashActivity.this, MainActivity.class);
-                        spinner.setVisibility(View.GONE);
-                        startActivity(t1r);
-                        finish();
-                    }
-                    else
-                    {
-                        try {
-                            throw task.getException();
-                        } catch (FirebaseAuthInvalidUserException e) {
-                            Log.d(TAG, "email :" + email);
-                            authError = "Invalid E-mail";
-                        } catch (FirebaseAuthInvalidCredentialsException e) {
-                            Log.d(TAG , "password :" + password);
-                            authError = "Invalid Password";
-                        } catch (FirebaseNetworkException e) {
-                            authError = "Network Error";
-                        } catch (Exception e) {
-                            Log.e(TAG, e.getMessage());
-                            authError = "Unknown Error";
-                        }
-                        Log.w(TAG, "signInWithEmail:failed", task.getException());
-                        Toast.makeText(SplashActivity.this, authError,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-            */
         }
     }
 }

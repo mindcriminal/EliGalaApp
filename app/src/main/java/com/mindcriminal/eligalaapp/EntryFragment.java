@@ -27,18 +27,16 @@ import static android.content.ContentValues.TAG;
 
 public class EntryFragment extends Fragment implements View.OnClickListener {
 
-    private TextView statusMessage;
     private EditText nameInput;
     private EditText ticketInput;
+    private EditText rangeInput;
     private Button readTicketButton;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-    private static final int RC_BARCODE_CAPTURE = 9001;
-    private ArrayList<String> ticketList;
+    private static final int RC_TICKET_CAPTURE = 9001;
 
     public static EntryFragment newInstance(){
-        EntryFragment entryFragment = new EntryFragment();
-        return entryFragment;
+        return new EntryFragment();
     }
 
     @Nullable
@@ -52,21 +50,19 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        database= FirebaseDatabase.getInstance();
-        reference= database.getReference("Purchased Tickets");
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("Purchased Tickets");
 
-        statusMessage = getView().findViewById(R.id.status_message);
         nameInput = getView().findViewById(R.id.name_input);
         ticketInput = getView().findViewById(R.id.ticket_input);
-
-        ticketList = new ArrayList<>();
+        rangeInput = getView().findViewById(R.id.range_input);
 
         // Disable scanning for now
-        //readTicketButton = getView().findViewById(R.id.read_ticket);
-        //readTicketButton.setEnabled(false;)
+        readTicketButton = getView().findViewById(R.id.read_ticket);
+        readTicketButton.setEnabled(false);
 
         getView().findViewById(R.id.read_ticket).setOnClickListener(this);
-        getView().findViewById(R.id.save_data).setOnClickListener(this);
+        getView().findViewById(R.id.save_ticket).setOnClickListener(this);
     }
 
     @Override
@@ -76,29 +72,29 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
             intent.putExtra(OcrCaptureActivity.AutoFocus, true);
             intent.putExtra(OcrCaptureActivity.UseFlash, true);
 
-            startActivityForResult(intent, RC_BARCODE_CAPTURE);
+            startActivityForResult(intent, RC_TICKET_CAPTURE);
         }
-        else if (v.getId() == R.id.save_data) {
+        else if (v.getId() == R.id.save_ticket) {
             String name = nameInput.getText().toString();
-            String ticket = ticketInput.getText().toString();
+            Integer ticket = Integer.parseInt(ticketInput.getText().toString());
+            Integer range = Integer.parseInt(rangeInput.getText().toString());
+
             RaffleData raffleData = new RaffleData();
 
-            if(ticketList.size() > 1) {
-                // Loop over ticket list and publish to database
-                for (int i = 0; i < ticketList.size(); i++) {
-                    raffleData.setData(name, ticketList.get(i), "");
-                    reference.child(ticketList.get(i)).setValue(raffleData);
-                    Log.d(TAG, "Saving " + name + " " + ticketList.get(i) + " to Firebase");
+            if(range > 0) {
+                for (int i = 0; i <= range; i++) {
+                    raffleData.setData(name, ticket + i, 0);
+                    reference.child(Integer.toString(ticket + i)).setValue(raffleData);
+                    Log.d(TAG, "Saving " + name + " " + (ticket + i) + " to Firebase");
                 }
             }
             else {
-                // Single ticket
-                raffleData.setData(name, ticket, "");
-                reference.child(ticket).setValue(raffleData);
+                raffleData.setData(name, ticket, 0);
+                reference.child(Integer.toString(ticket)).setValue(raffleData);
                 Log.d(TAG, "Saving " + name + " " + ticket + " to Firebase");
             }
 
-            Toast.makeText(getActivity().getApplicationContext(),"Data Successfully Saved!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(),"Ticket Successfully Saved!",Toast.LENGTH_LONG).show();
             nameInput.setText("");
             ticketInput.setText("");
         }
@@ -106,26 +102,7 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RC_BARCODE_CAPTURE) {
-            if (resultCode == CommonStatusCodes.SUCCESS) {
-                if (data != null) {
-                    ticketList = (ArrayList<String>)data.getSerializableExtra(OcrCaptureActivity.TicketList);
-                    String ticketsConfirmed = ticketList.size() + " Tickets Scanned!";
-                    statusMessage.setText(ticketsConfirmed);
-                    if(ticketList.size() > 1) {
-                        ticketInput.setText(R.string.multiple_tickets);
-                    }
-                    else {
-                        ticketInput.setText(ticketList.get(0));
-                    }
-                } else {
-                    statusMessage.setText(R.string.ticket_failure);
-                    Log.d(TAG, "No ticket captured, intent data is null");
-                }
-            } else {
-                statusMessage.setText(String.format(getString(R.string.ticket_error),
-                        CommonStatusCodes.getStatusCodeString(resultCode)));
-            }
+        if (requestCode == RC_TICKET_CAPTURE) {
         }
         else {
             super.onActivityResult(requestCode, resultCode, data);

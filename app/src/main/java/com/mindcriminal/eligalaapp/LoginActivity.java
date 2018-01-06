@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailText, passwordText;
     private Button loginButton;
     
-    private FirebaseAuth fauth;
+    private FirebaseAuth fAuth;
     private String authError;
 
     @Override
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         
-        fauth = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
         
         emailText = findViewById(R.id.email);
         passwordText = findViewById(R.id.password);
@@ -62,16 +62,18 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setEnabled(false);
 
+        // Pop-up dialog with spinner
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
+        // Authenticate with Firebase
         final String email = emailText.getText().toString();
         final String password = passwordText.getText().toString();
 
-        fauth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task)
                 {
@@ -96,12 +98,14 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (FirebaseNetworkException e) {
                             authError = "Network Error";
                         } catch (Exception e) {
-                            Log.e(TAG, e.getMessage());
+                            Log.d(TAG, e.getMessage());
                             authError = "Unknown Error";
                         }
-                        Log.w(TAG, "signInWithEmail:failed", task.getException());
+                        Log.d(TAG, "signInWithEmail:failed", task.getException());
+
                         progressDialog.dismiss();
                         loginButton.setEnabled(true);
+
                         Toast.makeText(LoginActivity.this, authError,
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -127,14 +131,14 @@ public class LoginActivity extends AppCompatActivity {
         String password = passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError("enter a valid email address");
+            emailText.setError("Enter a valid email address");
             valid = false;
         } else {
             emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            passwordText.setError("between 4 and 10 alphanumeric characters");
+            passwordText.setError("Between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
             passwordText.setError(null);

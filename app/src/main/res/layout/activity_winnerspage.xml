@@ -22,13 +22,13 @@
         android:id="@+id/read_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/save_data"
-        android:layout_alignBottom="@+id/save_data"
+        android:layout_alignBaseline="@+id/save_ticket"
+        android:layout_alignBottom="@+id/save_ticket"
         android:layout_alignStart="@+id/auto_focus"
         android:text="@string/read_ticket" />
 
     <Button
-        android:id="@+id/save_data"
+        android:id="@+id/save_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,7 +41,7 @@
         android:id="@+id/auto_focus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/save_data"
+        android:layout_above="@+id/save_ticket"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="70dp"
         android:layout_marginStart="34dp"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/auto_focus"
         android:layout_alignBottom="@+id/auto_focus"
-        android:layout_alignStart="@+id/save_data"
+        android:layout_alignStart="@+id/save_ticket"
         android:checked="false"
         android:text="@string/use_flash" />
 

@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.Dark.WithActionBar">
         </activity>
+        <activity android:name=".SearchActivity" android:theme="@android:style/Theme.DeviceDefault.Light.Dialog">
+        </activity>
         <activity android:name=".OcrCaptureActivity" android:theme="@style/AppTheme.Dark.NoActionBar">
         </activity>
     </application>

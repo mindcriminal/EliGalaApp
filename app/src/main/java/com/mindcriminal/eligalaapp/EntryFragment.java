@@ -34,6 +34,7 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private static final int RC_TICKET_CAPTURE = 9001;
+    private MySQLiteHelper mySQLiteHelper;
 
     public static EntryFragment newInstance(){
         return new EntryFragment();
@@ -52,6 +53,7 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Purchased Tickets");
+        mySQLiteHelper = new MySQLiteHelper(getActivity());
 
         nameInput = getView().findViewById(R.id.name_input);
         ticketInput = getView().findViewById(R.id.ticket_input);
@@ -86,12 +88,14 @@ public class EntryFragment extends Fragment implements View.OnClickListener {
                     raffleData.setData(name, ticket + i, 0);
                     reference.child(Integer.toString(ticket + i)).setValue(raffleData);
                     Log.d(TAG, "Saving " + name + " " + (ticket + i) + " to Firebase");
+                    mySQLiteHelper.addTicket(raffleData);
                 }
             }
             else {
                 raffleData.setData(name, ticket, 0);
                 reference.child(Integer.toString(ticket)).setValue(raffleData);
                 Log.d(TAG, "Saving " + name + " " + ticket + " to Firebase");
+                mySQLiteHelper.addTicket(raffleData);
             }
 
             Toast.makeText(getActivity().getApplicationContext(),"Ticket Successfully Saved!",Toast.LENGTH_LONG).show();

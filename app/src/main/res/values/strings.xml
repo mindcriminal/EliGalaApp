@@ -19,6 +19,7 @@
     <string name="title_entry">Entry</string>
     <string name="title_winners">Winners</string>
     <string name="name">Name</string>
+    <string name="prize">Prize</string>
     <string name="ticket_number">Ticket Number</string>
     <string name="ticket_range">Ticket Range</string>
     <string name="multiple_tickets">**Multiple**</string>
@@ -26,7 +27,7 @@
     <string name="login">Login</string>
     <string name="email">E-Mail</string>
     <string name="password">Password</string>
-
-
+    <string name="search_record">Search Records</string>
+    <string name="search">Search</string>
 
 </resources>

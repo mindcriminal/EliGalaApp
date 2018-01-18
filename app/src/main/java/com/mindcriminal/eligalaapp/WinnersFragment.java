@@ -58,6 +58,8 @@ public class WinnersFragment extends Fragment implements View.OnClickListener{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //getActivity().getActionBar().setTitle("Winner Entry");
+
         database= FirebaseDatabase.getInstance();
         reference= database.getReference("Purchased Tickets");
 
